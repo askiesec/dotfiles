@@ -25,16 +25,17 @@ default_floating_border pixel 1
 # WORKSPACE DEFINITIONS
 # ===================================
 
-set $workspace1  "1"
-set $workspace2  "2"
-set $workspace3  "3"
-set $workspace4  "4"
-set $workspace5  "5"
-set $workspace6  "6"
-set $workspace7  "7"
-set $workspace8  "8"
-set $workspace9  "9"
-set $workspace10 "10"
+# Define workspace names for better organization
+set $workspace1  "1: Terminal"
+set $workspace2  "2: Web"
+set $workspace3  "3: Working"
+set $workspace4  "4: Working"
+set $workspace5  "5: General"
+set $workspace6  "6: Dashboard"
+set $workspace7  "7: General"
+set $workspace8  "8: Personal Obsidian"
+set $workspace9  "9: DISTRACTIONS"
+set $workspace10 "10: Dev Null"
 
 # ===================================
 # KEY BINDINGS - BASIC CONTROLS
@@ -142,7 +143,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # i3 management
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "bindsym $mod+d exec rofi -show run"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Resize mode
 bindsym $mod+r mode "resize"
@@ -228,7 +229,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always --no-startup-id picom -b
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/background.jpg
+exec --no-startup-id $HOME/.fehbg
 
 # Status bar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
