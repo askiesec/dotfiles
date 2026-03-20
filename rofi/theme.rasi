@@ -1,0 +1,82 @@
+/* ~/.config/rofi/theme.rasi */
+
+* {
+    font:               "JetBrainsMono Nerd Font 11";
+
+    bg:                 #0a0a0a;
+    fg:                 #e6e6e6;
+    fg-dim:             #888888;
+    selected-bg:        #1a1a1a;
+    selected-fg:        #ffffff;
+
+    background-color:   transparent;
+    text-color:         @fg;
+    border-color:       #1a1a1a;
+}
+
+window {
+    background-color:   @bg;
+    width:              40%;
+    border:             1px solid;
+    border-radius:      0px;
+    padding:            0;
+}
+
+mainbox {
+    background-color:   @bg;
+    padding:            12px;
+    spacing:            8px;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    background-color:   @bg;
+    text-color:         @fg;
+    padding:            0 0 8px 0;
+    spacing:            0;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   @bg;
+    text-color:         @fg;
+    padding:            0 6px 0 0;
+}
+
+entry {
+    background-color:   @bg;
+    text-color:         @fg;
+    placeholder-color:  @fg-dim;
+    placeholder:        "run...";
+    cursor:             text;
+    padding:            0;
+}
+
+listview {
+    background-color:   @bg;
+    spacing:            0px;
+    lines:              8;
+    scrollbar:          false;
+    border:             0px;
+    padding:            0;
+}
+
+element {
+    background-color:   @bg;
+    text-color:         @fg;
+    padding:            4px 0;
+    spacing:            0;
+    border-radius:      0;
+}
+
+element selected.normal {
+    background-color:   @selected-bg;
+    text-color:         @selected-fg;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    highlight:          bold;
+    vertical-align:     0.5;
+}

@@ -1,0 +1,251 @@
+# ===================================
+# i3 Window Manager Configuration
+# Converted from Sway config
+# ===================================
+# For complete reference: https://i3wm.org/docs/userguide.html
+
+# ===================================
+# BASIC SETTINGS
+# ===================================
+
+# Set modifier key (Super key)
+set $mod Mod4
+
+# Font for window titles and bar
+font pango:System San Francisco Display 9
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Default borders
+default_border pixel 1
+default_floating_border pixel 1
+
+# ===================================
+# WORKSPACE DEFINITIONS
+# ===================================
+
+set $workspace1  "1"
+set $workspace2  "2"
+set $workspace3  "3"
+set $workspace4  "4"
+set $workspace5  "5"
+set $workspace6  "6"
+set $workspace7  "7"
+set $workspace8  "8"
+set $workspace9  "9"
+set $workspace10 "10"
+
+# ===================================
+# KEY BINDINGS - BASIC CONTROLS
+# ===================================
+
+# Terminal
+bindsym $mod+Return exec ghostty
+
+# Application launcher
+bindsym $mod+d exec rofi -show drun
+
+# Kill focused window
+bindsym $mod+q kill
+
+# ===================================
+# KEY BINDINGS - WINDOW NAVIGATION
+# ===================================
+
+# Change focus (vim-like keys)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Change focus (arrow keys)
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# Move focused window (vim-like keys)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Move focused window (arrow keys)
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# ===================================
+# KEY BINDINGS - LAYOUT CONTROLS
+# ===================================
+
+# Split containers
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Fullscreen mode
+bindsym $mod+f fullscreen toggle
+
+# Container layout modes
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle floating/tiling
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Focus parent container
+bindsym $mod+a focus parent
+
+# ===================================
+# KEY BINDINGS - SCRATCHPAD
+# ===================================
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# ===================================
+# KEY BINDINGS - WORKSPACE SWITCHING
+# ===================================
+
+# Switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# Move container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# ===================================
+# KEY BINDINGS - SYSTEM CONTROLS
+# ===================================
+
+# i3 management
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "bindsym $mod+d exec rofi -show run"
+
+# Resize mode
+bindsym $mod+r mode "resize"
+
+# ===================================
+# RESIZE MODE
+# ===================================
+
+mode "resize" {
+    # Vim-like keys
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
+
+    # Arrow keys
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
+
+    # Exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# ===================================
+# KEY BINDINGS - MEDIA & HARDWARE
+# ===================================
+
+# Audio controls
+bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioMicMute     exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Brightness controls
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
+
+# ===================================
+# KEY BINDINGS - SCREENSHOTS
+# ===================================
+
+bindsym Print       exec flameshot gui
+bindsym Ctrl+Print  exec flameshot gui --clipboard
+bindsym $mod+Print  exec flameshot gui
+
+# ===================================
+# WINDOW RULES
+# ===================================
+
+# Floating windows by role/type
+for_window [window_role="pop-up"]     floating enable
+for_window [window_role="dialog"]     floating enable
+for_window [window_type="dialog"]     floating enable
+for_window [window_type="utility"]    floating enable
+for_window [window_type="toolbar"]    floating enable
+for_window [window_type="menu"]       floating enable
+for_window [window_type="popup_menu"] floating enable
+
+# Center floating windows
+for_window [window_role="pop-up"]  move position center
+for_window [window_role="dialog"]  move position center
+for_window [window_type="dialog"]  move position center
+for_window [window_type="utility"] move position center
+
+# ===================================
+# COLORS AND THEMING
+# ===================================
+
+# Window colors (focused windows)
+client.focused #555555 #555555 #ffffff #2e9ef4 #6BBEE8
+
+# ===================================
+# STARTUP APPLICATIONS
+# ===================================
+
+# Authentication agent
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Compositor
+exec_always --no-startup-id picom -b
+
+# Wallpaper
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/background.jpg
+
+# Status bar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Screenshot tool
+exec_always --no-startup-id flameshot
+
+# Screen setup
+exec_always --no-startup-id ~/.dotfiles/bin/screen-setup.sh
+
+# Notification daemon
+exec_always --no-startup-id pkill dunst; dunst &
+
+# Input setup
+exec --no-startup-id ~/.dots/bin/input-setup.sh
+
+# Themes
+exec --no-startup-id xsettingsd &
+exec --no-startup-id qt5ct
+

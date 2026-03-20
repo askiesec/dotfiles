@@ -1,0 +1,10 @@
+/* ~/.config/rofi/config.rasi */
+
+configuration {
+    modi:           "run,drun";
+    show-icons:     false;
+    lines:          8;
+
+}
+
+@theme "~/.config/rofi/theme.rasi"

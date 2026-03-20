@@ -1,0 +1,18 @@
+theme = "Monokai Remastered"
+gtk-tabs-location = hidden
+font-family = "Berkeley Mono"
+font-size = 14
+scrollback-limit = 100000
+window-theme = ghostty
+clipboard-read = allow
+clipboard-paste-protection = false
+window-decoration = false
+shell-integration = zsh
+confirm-close-surface = false
+
+# Cursor settings
+cursor-style = bar
+
+# Transparency
+background-blur-radius = 60
+background-opacity = .95
