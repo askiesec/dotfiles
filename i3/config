@@ -8,28 +8,35 @@
 # BASIC SETTINGS
 # ===================================
 
+# GOAT
+workspace_layout tabbed
+
 # Set modifier key (Super key)
 set $mod Mod4
 
 # Font for window titles and bar
-font pango:System San Francisco Display 9
+font pango:JetBrainsMono Nerd Font 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # Default borders
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 0
+default_floating_border pixel 0
 
 # ===================================
 # WORKSPACE DEFINITIONS
 # ===================================
 
+# WTF
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # Define workspace names for better organization
 set $workspace1  "1: Terminal"
 set $workspace2  "2: Web"
 set $workspace3  "3: Working"
-set $workspace4  "4: Working"
+set $workspace4  "4: Virtual Machine"
 set $workspace5  "5: General"
 set $workspace6  "6: Dashboard"
 set $workspace7  "7: General"
@@ -117,12 +124,12 @@ bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+ccedilla    workspace $workspace5
+bindsym $mod+dead_tilde  workspace $workspace6
+bindsym $mod+bracketright workspace $workspace7
+bindsym $mod+bracketleft  workspace $workspace8
+bindsym $mod+p           workspace $workspace9
+bindsym $mod+0           workspace $workspace10
 
 # Move container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -244,9 +251,4 @@ exec_always --no-startup-id ~/.dotfiles/bin/screen-setup.sh
 exec_always --no-startup-id pkill dunst; dunst &
 
 # Input setup
-exec --no-startup-id ~/.dots/bin/input-setup.sh
-
-# Themes
-exec --no-startup-id xsettingsd &
-exec --no-startup-id qt5ct
-
+exec --no-startup-id ~/.dotfiles/bin/input-setup.sh
