@@ -9,20 +9,20 @@
 # ===================================
 
 # GOAT
-workspace_layout tabbed
+#workspace_layout tabbed
 
 # Set modifier key (Super key)
 set $mod Mod4
 
 # Font for window titles and bar
-font pango:JetBrainsMono Nerd Font 10
+font pango:JetBrainsMono Nerd Font 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # Default borders
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel 1
+default_floating_border pixel 2
 
 # ===================================
 # WORKSPACE DEFINITIONS
@@ -33,16 +33,31 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # Define workspace names for better organization
+# Laptop
 set $workspace1  "1: Terminal"
 set $workspace2  "2: Web"
 set $workspace3  "3: Working"
 set $workspace4  "4: Virtual Machine"
-set $workspace5  "5: General"
+set $workspace5  "5: Code"
+# External Monitor
 set $workspace6  "6: Dashboard"
 set $workspace7  "7: General"
 set $workspace8  "8: Personal Obsidian"
 set $workspace9  "9: DISTRACTIONS"
 set $workspace10 "10: Dev Null"
+
+# Atribuição de outputs
+workspace $workspace1  output eDP
+workspace $workspace2  output eDP
+workspace $workspace3  output eDP
+workspace $workspace4  output eDP
+workspace $workspace5  output eDP
+
+workspace $workspace6  output HDMI-A-0
+workspace $workspace7  output HDMI-A-0
+workspace $workspace8  output HDMI-A-0
+workspace $workspace9  output HDMI-A-0
+workspace $workspace10 output HDMI-A-0
 
 # ===================================
 # KEY BINDINGS - BASIC CONTROLS
@@ -98,7 +113,6 @@ bindsym $mod+f fullscreen toggle
 
 # Container layout modes
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Toggle floating/tiling
@@ -120,11 +134,13 @@ bindsym $mod+minus scratchpad show
 # ===================================
 
 # Switch to workspace
+# Laptop
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+ccedilla    workspace $workspace5
+# Monitor
 bindsym $mod+dead_tilde  workspace $workspace6
 bindsym $mod+bracketright workspace $workspace7
 bindsym $mod+bracketleft  workspace $workspace8
@@ -230,7 +246,7 @@ client.focused #555555 #555555 #ffffff #2e9ef4 #6BBEE8
 # ===================================
 
 # Authentication agent
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # Compositor
 exec_always --no-startup-id picom -b
@@ -245,7 +261,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id flameshot
 
 # Screen setup
-exec_always --no-startup-id ~/.dotfiles/bin/screen-setup.sh
+exec --no-startup-id xrandr --output eDP --primary --auto --output HDMI-A-0 --auto --above eDP
 
 # Notification daemon
 exec_always --no-startup-id pkill dunst; dunst &
